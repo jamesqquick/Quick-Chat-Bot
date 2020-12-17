@@ -1,3 +1,5 @@
+# Quick Chat Bot
+
 Easily create chat bots for different platforms with some nice built in features.
 
 - easy command creation/imports
