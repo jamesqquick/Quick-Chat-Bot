@@ -46,9 +46,8 @@ class ChatCommand {
         this.userLastUsedMap = {};
     }
 
-    tryUseCommand(channel, tags, message, self, client) {
+    tryUseCommand(username, ...args) {
         let canCallCallback = true;
-        const username = tags.username;
         let lastUsedByUser = this.userLastUsedMap[username] || 0;
         //check user cooldown first
         if (canCallCallback && this.userCooldown > 0) {
@@ -84,7 +83,7 @@ class ChatCommand {
 
         if (canCallCallback) {
             this.userLastUsedMap[username] = lastUsedByUser;
-            this.callback(channel, tags, message, self, client);
+            this.callback(...args);
         }
     }
 }
