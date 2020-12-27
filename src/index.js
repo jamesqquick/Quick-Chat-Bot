@@ -1,3 +1,3 @@
 const QuickTwitchBot = require('./QuickTwitchBot');
-
-module.exports = { QuickTwitchBot };
+const QuickDiscordBot = require('./QuickDiscordBot');
+module.exports = { QuickTwitchBot, QuickDiscordBot };
