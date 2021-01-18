@@ -19,10 +19,13 @@ module.exports = class QuickDiscordBot {
                 'Invalid configuration for TwitchChatBot. Commands directory is required.'
             );
         }
-        const { commandsDir } = config;
+        const { commandsDir, testChannel } = config;
         this.config = config;
         this.client = new Discord.Client();
-        this.messageHandler = new DiscordMessageHandler(commandsDir);
+        this.messageHandler = new DiscordMessageHandler(
+            commandsDir,
+            testChannel
+        );
     }
 
     connect() {
@@ -33,4 +36,3 @@ module.exports = class QuickDiscordBot {
         this.client.login(this.config.botToken);
     }
 };
-

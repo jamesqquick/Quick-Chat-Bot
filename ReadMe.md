@@ -40,6 +40,7 @@ You'll need 2 properties for creating your QuickTwitchBot.
 
 1. bot token - the token for your discord bot (get this from discord.com)
 2. commands directory - the directory where your command files are stored
+3. test channel (optional) - a channel name to ignore while in production 
 
 With those credentials in place, you can create your Discord bot.
    
