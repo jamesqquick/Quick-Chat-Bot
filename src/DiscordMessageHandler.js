@@ -2,14 +2,20 @@ const fs = require('fs');
 const ChatCommand = require('./ChatCommand');
 module.exports = class DiscordMessageHandler {
     commands = {};
-    constructor({ commandsDir, testChannel, testMode }) {
+    constructor({ commandsDir, testChannel, testMode, ignoreChannels }) {
         if (!commandsDir) {
             throw new Error(
                 'Invalid parameters. You must include a commands directory to create a DiscordMessageHandler'
             );
         }
+        if (ignoreChannels && !Array.isArray(ignoreChannels)) {
+            throw new Error(
+                'Invalid parameters. ignoreChannels must be an array.'
+            );
+        }
         this.testChannel = testChannel;
         this.testMode = testMode;
+        this.ignoreChannels = ignoreChannels;
         try {
             const commandFiles = fs.readdirSync(commandsDir);
             commandFiles
@@ -34,13 +40,20 @@ module.exports = class DiscordMessageHandler {
 
     handleMessage = async (msg) => {
         //In test mode, only respond to messages in the test channel
+        const channel = msg.channel.name;
         if (
             this.testMode &&
             this.testChannel !== undefined &&
-            msg.channel.name !== this.testChannel
+            channel !== this.testChannel
         ) {
             return console.log(
                 `Ignoring message in test mode since it's not in the test channel`
+            );
+        }
+
+        if (this.ignoreChannels && this.ignoreChannels.includes(channel)) {
+            return console.log(
+                `Ignoring message in channel ${channel} based on bot configuration.`
             );
         }
         console.info(`${msg.author.username}: ${msg.content}`);

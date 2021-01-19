@@ -3,7 +3,13 @@ const DiscordMessageHandler = require('./DiscordMessageHandler');
 
 module.exports = class QuickDiscordBot {
     constructor(config) {
-        const { commandsDir, testChannel, testMode, botToken } = config;
+        const {
+            commandsDir,
+            testChannel,
+            testMode,
+            botToken,
+            ignoreChannels,
+        } = config;
         if (botToken === undefined || typeof botToken !== 'string') {
             throw new Error(
                 'Invalid configuration for DiscordChatBot. botToken is required.'
@@ -15,6 +21,12 @@ module.exports = class QuickDiscordBot {
             );
         }
 
+        if (ignoreChannels && !Array.isArray(ignoreChannels)) {
+            throw new Error(
+                'Invalid configuration for DiscordChatBot. ignoreChannels must be an array.'
+            );
+        }
+
         if (testMode && (!testChannel || typeof testChannel !== 'string')) {
             throw new Error(
                 'Invalid configuration for DiscordChatBot. testChannel is required to run in test mode.'
@@ -22,11 +34,7 @@ module.exports = class QuickDiscordBot {
         }
         this.config = config;
         this.client = new Discord.Client();
-        this.messageHandler = new DiscordMessageHandler({
-            commandsDir,
-            testChannel,
-            testMode,
-        });
+        this.messageHandler = new DiscordMessageHandler(config);
     }
 
     connect() {
@@ -35,6 +43,12 @@ module.exports = class QuickDiscordBot {
             if (this.config.testMode && this.config.testChannel) {
                 console.log(
                     `***RUNNING IN TEST MODE*** and only listening to channel ${this.config.testChannel}`
+                );
+            }
+            if (this.config.ignoreChannels) {
+                console.log(
+                    `Ignoring the following channels`,
+                    this.config.ignoreChannels
                 );
             }
         });

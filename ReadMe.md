@@ -42,6 +42,7 @@ You'll need 2 properties for creating your QuickTwitchBot.
 2. `commandsDir` - the directory where your command files are stored
 3. `testMode` (optional) - a boolean that forces the bot to only listen to commands from the `testChannel` channel
 4. `testChannel` (optional) - the channel to listen for messages in if the bot is in test mode
+5. `ignoreChannels` (optional) - array of channel names to ignore
 
 With those credentials in place, you can create your Discord bot.
    
