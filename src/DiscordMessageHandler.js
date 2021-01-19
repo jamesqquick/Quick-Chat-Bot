@@ -49,7 +49,6 @@ module.exports = class DiscordMessageHandler {
         const parts = msg.content.split(' ');
 
         const command = parts[0];
-        console.log(command);
         if (this.commands[command]) {
             this.commands[command].tryUseCommand(username, msg);
         }
