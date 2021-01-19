@@ -14,10 +14,10 @@ This package currently supports the following platforms for handling chat comman
 
 You'll need 4 properties for creating your QuickTwitchBot.
 
-1. twitch username - the username you are connecting with
-2. twitch password - the password/token you are connecting with (you can find/generate your token [here](https://twitchapps.com/tmi/))
-3. twitch channel - the channel you are connecting to (this can be the same as your username)
-4. commands directory - the directory where your command files are stored
+1. `username` - the Twitch username you are connecting with
+2. `password` - the Twitch password/token you are connecting with (you can find/generate your token [here](https://twitchapps.com/tmi/))
+3. `channel` - the channel you are connecting to (this can be the same as your username)
+4. `commandsDir` - the directory where your command files are stored
 
 With those credentials in place, you can create your Twitch bot.
    
@@ -38,9 +38,10 @@ bot.connect();
 
 You'll need 2 properties for creating your QuickTwitchBot.
 
-1. bot token - the token for your discord bot (get this from discord.com)
-2. commands directory - the directory where your command files are stored
-3. test channel (optional) - a channel name to ignore while in production 
+1. `botToken` - the token for your discord bot (get this from discord.com)
+2. `commandsDir` - the directory where your command files are stored
+3. `testMode` (optional) - a boolean that forces the bot to only listen to commands from the `testChannel` channel
+4. `testChannel` (optional) - the channel to listen for messages in if the bot is in test mode
 
 With those credentials in place, you can create your Discord bot.
    

@@ -3,29 +3,24 @@ const DiscordMessageHandler = require('./DiscordMessageHandler');
 
 module.exports = class QuickDiscordBot {
     constructor(config) {
-        if (
-            config.botToken === undefined ||
-            typeof config.botToken !== 'string'
-        ) {
+        const { commandsDir, testChannel, testMode, botToken } = config;
+        if (botToken === undefined || typeof botToken !== 'string') {
             throw new Error(
                 'Invalid configuration for TwitchChatBot. botToken is required.'
             );
         }
-        if (
-            config.commandsDir === undefined ||
-            typeof config.commandsDir !== 'string'
-        ) {
+        if (commandsDir === undefined || typeof commandsDir !== 'string') {
             throw new Error(
                 'Invalid configuration for TwitchChatBot. Commands directory is required.'
             );
         }
-        const { commandsDir, testChannel } = config;
         this.config = config;
         this.client = new Discord.Client();
-        this.messageHandler = new DiscordMessageHandler(
+        this.messageHandler = new DiscordMessageHandler({
             commandsDir,
-            testChannel
-        );
+            testChannel,
+            testMode,
+        });
     }
 
     connect() {

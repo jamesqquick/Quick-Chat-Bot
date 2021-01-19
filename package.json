@@ -9,6 +9,10 @@
     "keywords": [
         "chat bot"
     ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/jamesqquick/Quick-Chat-Bot"
+    },
     "author": "James Q Quick",
     "license": "ISC",
     "dependencies": {
