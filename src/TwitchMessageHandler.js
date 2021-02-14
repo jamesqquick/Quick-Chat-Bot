@@ -45,8 +45,9 @@ module.exports = class TwitchMessageHandler {
             );
         }
         //Check for Command
-        if (this.commands[message]) {
-            this.commands[message].tryUseCommand(
+        const incomingCommand = message.split(' ')[0];
+        if (this.commands[incomingCommand]) {
+            this.commands[incomingCommand].tryUseCommand(
                 username,
                 channel,
                 tags,
