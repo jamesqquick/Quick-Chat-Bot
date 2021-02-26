@@ -39,7 +39,7 @@ module.exports = class QuickDiscordBot {
 
     connect() {
         this.client.on('ready', () => {
-            console.log('Learn Build Teach is active');
+            console.log('Connected to Discord');
             if (this.config.testMode && this.config.testChannel) {
                 console.log(
                     `***RUNNING IN TEST MODE*** and only listening to channel ${this.config.testChannel}`
