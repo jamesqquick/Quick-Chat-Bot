@@ -2,7 +2,13 @@ const fs = require('fs');
 const ChatCommand = require('./ChatCommand');
 module.exports = class DiscordMessageHandler {
     commands = {};
-    constructor({ commandsDir, testChannel, testMode, ignoreChannels }) {
+    constructor({
+        commandsDir,
+        testChannel,
+        testMode = false,
+        ignoreChannels = [],
+        ignoreBots = true,
+    }) {
         if (!commandsDir) {
             throw new Error(
                 'Invalid parameters. You must include a commands directory to create a DiscordMessageHandler'
@@ -16,6 +22,7 @@ module.exports = class DiscordMessageHandler {
         this.testChannel = testChannel;
         this.testMode = testMode;
         this.ignoreChannels = ignoreChannels;
+        this.ignoreBots = ignoreBots;
         try {
             const commandFiles = fs.readdirSync(commandsDir);
             commandFiles
@@ -57,7 +64,8 @@ module.exports = class DiscordMessageHandler {
             );
         }
         console.info(`${msg.author.username}: ${msg.content}`);
-        if (msg.author.bot) return;
+
+        if (msg.author.bot && this.ignoreBots) return;
         const username = msg.author.username;
         const parts = msg.content.split(' ');
 
