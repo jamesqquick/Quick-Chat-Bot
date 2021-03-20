@@ -54,7 +54,7 @@ const path = require('path');
 const bot = new QuickDiscordBot({
     botToken: <YOUR_BOT_TOKEN>,
     commandsDir: path.join(__dirname, <YOUR_COMMANDS_DIR>) , // ex. 'commands'
-    ignoreChannels: [] //array of channels to ignore messages
+    ignoreChannels: [], //array of channels to ignore messages
     testMode: false,
     testChannel: "test", //single channel to listen to while in test mode
     ignoreBots: true, //ignore messages from bots
