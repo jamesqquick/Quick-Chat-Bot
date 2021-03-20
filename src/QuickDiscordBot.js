@@ -60,6 +60,10 @@ module.exports = class QuickDiscordBot {
                     this.config.ignoreChannels
                 );
             }
+
+            if (!this.showLiveMessages) {
+                console.log(`Live server messages will be suppressed.`);
+            }
         });
         this.client.on('message', this.messageHandler.handleMessage);
         this.client.login(this.config.botToken);

@@ -65,8 +65,7 @@ module.exports = class DiscordMessageHandler {
                 `Ignoring message in channel ${channel} based on bot configuration.`
             );
         }
-        !this.showLiveMessages &&
-            console.log(`Live server chat messages will be suppressed.`);
+
         this.showLiveMessages &&
             console.info(`${msg.author.username}: ${msg.content}`);
 
