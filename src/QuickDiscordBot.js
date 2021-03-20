@@ -61,7 +61,7 @@ module.exports = class QuickDiscordBot {
                 );
             }
 
-            if (!this.showLiveMessages) {
+            if (!this.config.showLiveMessages) {
                 console.log(`Live server messages will be suppressed.`);
             }
         });
