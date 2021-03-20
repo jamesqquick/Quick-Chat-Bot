@@ -8,6 +8,7 @@ module.exports = class DiscordMessageHandler {
         testMode = false,
         ignoreChannels = [],
         ignoreBots = true,
+        showLiveMessages = true,
     }) {
         if (!commandsDir) {
             throw new Error(
@@ -23,6 +24,7 @@ module.exports = class DiscordMessageHandler {
         this.testMode = testMode;
         this.ignoreChannels = ignoreChannels;
         this.ignoreBots = ignoreBots;
+        this.showLiveMessages = showLiveMessages;
         try {
             const commandFiles = fs.readdirSync(commandsDir);
             commandFiles
@@ -63,7 +65,8 @@ module.exports = class DiscordMessageHandler {
                 `Ignoring message in channel ${channel} based on bot configuration.`
             );
         }
-        console.info(`${msg.author.username}: ${msg.content}`);
+        this.showLiveMessages &&
+            console.info(`${msg.author.username}: ${msg.content}`);
 
         if (msg.author.bot && this.ignoreBots) return;
         const username = msg.author.username;
