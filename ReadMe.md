@@ -36,7 +36,7 @@ bot.connect();
 
 ## Configuring a Discord Chat Bot
 
-You'll need 2 properties for creating your QuickTwitchBot.
+You'll need 2 properties for creating your QuickDiscordBot.
 
 1. `botToken` - the token for your discord bot (get this from discord.com)
 2. `commandsDir` - the directory where your command files are stored
