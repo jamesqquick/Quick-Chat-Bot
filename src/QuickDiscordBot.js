@@ -9,6 +9,7 @@ module.exports = class QuickDiscordBot {
             testMode,
             botToken,
             ignoreChannels,
+            showLiveMessages,
         } = config;
         if (botToken === undefined || typeof botToken !== 'string') {
             throw new Error(
@@ -32,6 +33,14 @@ module.exports = class QuickDiscordBot {
                 'Invalid configuration for DiscordChatBot. testChannel is required to run in test mode.'
             );
         }
+        if (
+            showLiveMessages === undefined ||
+            typeof showLiveMessages !== 'boolean'
+        ) {
+            throw new Error(
+                'Invalid configuration for DiscordChatBot. showLiveMessages must be a boolean.'
+            );
+        }
         this.config = config;
         this.client = new Discord.Client();
         this.messageHandler = new DiscordMessageHandler(config);
@@ -50,6 +59,10 @@ module.exports = class QuickDiscordBot {
                     `Ignoring the following channels`,
                     this.config.ignoreChannels
                 );
+            }
+
+            if (!this.config.showLiveMessages) {
+                console.log(`Live server messages will be suppressed.`);
             }
         });
         this.client.on('message', this.messageHandler.handleMessage);
