@@ -43,7 +43,7 @@ You'll need 2 properties for creating your QuickDiscordBot.
 3. `testMode` (optional) - a boolean that forces the bot to only listen to commands from the `testChannel` channel
 4. `testChannel` (optional) - the channel to listen for messages in if the bot is in test mode
 5. `ignoreChannels` (optional) - array of channel names to ignore
-6. `showLiveMessages` (optional) - a boolean that will silence live chat to the bot console
+6. `showLiveMessages` (optional and defaults to true) - a boolean that will turn on/off logging of all messages
 
 With those credentials in place, you can create your Discord bot.
 

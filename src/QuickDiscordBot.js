@@ -9,7 +9,7 @@ module.exports = class QuickDiscordBot {
             testMode,
             botToken,
             ignoreChannels,
-            showLiveMessages,
+            showLiveMessages = true,
         } = config;
         if (botToken === undefined || typeof botToken !== 'string') {
             throw new Error(
